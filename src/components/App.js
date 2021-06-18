@@ -160,17 +160,17 @@ function App()
 	// Do not alter/remove main div
 	return (
 	<div id="main">
-		<select id="state" value={stateVal} onChange={handleState}>
+		States: <select id="state" value={stateVal} onChange={handleState}>
 			{states.map((item,index)=>{
 				return<option value={index}>{item.name}</option>;
 			})}
 		</select>
-		<select id="city" value={cityVal} onChange={handleCity}>
+		Cities: <select id="city" value={cityVal} onChange={handleCity}>
 			{states[stateVal].city.map((item,index)=>{
 				return<option value={index}>{item.name}</option>;
 			})}
 		</select>
-		<select id="landmark" value={landVal} onChange={handleLandVal}>
+		Town: <select id="landmark" value={landVal} onChange={handleLandVal}>
 			{states[stateVal].city[cityVal].landmarks.map((item,index)=>{
 				return<option value={index}>{item.name}</option>;
 			})}
