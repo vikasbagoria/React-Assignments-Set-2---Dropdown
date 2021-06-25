@@ -170,29 +170,31 @@ function App()
 				return<option key={index} value={index}>{item.name}</option>;
 			})}
 		</select>
-		Town: <select id="landmark" value={landVal} onChange={handleLandVal}>
+		Towns: <select id="landmark" value={landVal} onChange={handleLandVal}>
 			{states[stateVal].city[cityVal].landmarks.map((item,index)=>{
 				return<option key={index} value={index}>{item.name}</option>;
 			})}
 		</select>
 		
-		<div id="state-name">{states[stateVal].name}</div>
-		<div id="state-title">{states[stateVal].title}</div>
+		<div id="state-name">
+		<div id="state-title">{states[stateVal].name}</div>
 		<div id="state-description" >{states[stateVal].description} </div>
-		
+		</div>
 
-		<div id="city-name">{states[stateVal].city[cityVal].name}</div>
-		<div id="city-title" >{states[stateVal].city[cityVal].title}</div>
+		<div id="city-name">
+		<div id="city-title" >{states[stateVal].city[cityVal].name}</div>
 		<div id="city-description" >
 			{states[stateVal].city[cityVal].description}
 		</div>
+		</div>
 
-		<div id="landmark-name">{states[stateVal].city[cityVal].landmarks[landVal].name}</div>
+		<div id="landmark-name">
 		<div id="landmark-title">
-			{states[stateVal].city[cityVal].landmarks[landVal].title}
+			{states[stateVal].city[cityVal].landmarks[landVal].name}
 		</div>	
 		<div id="landmark-description">
 		{states[stateVal].city[cityVal].landmarks[landVal].description}
+		</div>
 		</div>
 
 	</div>
