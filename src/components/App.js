@@ -189,7 +189,7 @@ function App()
 
 		<div id="landmark-name">{states[stateVal].city[cityVal].landmarks[landVal].name}</div>
 		<div id="landmark-title">
-			{states[stateVal].city[cityVal].landmarks[landVal].name}
+			{states[stateVal].city[cityVal].landmarks[landVal].title}
 		</div>	
 		<div id="landmark-description">
 		{states[stateVal].city[cityVal].landmarks[landVal].description}
