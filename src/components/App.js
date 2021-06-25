@@ -1,4 +1,4 @@
-import React, { useState,useReducer } from "react";
+import React, { useState,useEffect } from "react";
 import "./../styles/App.css";
 
 
@@ -20,14 +20,14 @@ const states = [{
 		description:"DBhopal is a city in the central Indian state of Madhya Pradesh. It's one of India’s greenest city. There are two main lakes, the Upper Lake and the Lower Lake.",
 		landmarks :[{
 			name : "MANIT",
-			description:"Maulana Azad National Institute of Technology Bhopal is a public technical university located in Bhopal, Madhya Pradesh, India. It is part of a group of publicly funded institutions in India known as National Institutes of Technology.",
+			description:"Maulana Azad National Institute of Technology Bhopal is a public technical university located in Bhopal, Madhya Pradesh, India. It is part of a group of publicly funded institutions in India known as National Institutes of Technology. ",
 		},{
 			name: "Berasia",
-			description:"Berasia is a landmark and a nagar palika in Bhopal district in the state of Madhya Pradesh, India.",
+			description:"Berasia is a landmark and a nagar palika in Bhopal district in the state of Madhya Pradesh, India. ",
 		}]
 	},{
 		name : "Gwalior",
-		description:"Gwalior is a city in the central Indian state of Madhya Pradesh. It's known for its palaces and temples, including the Sas Bahu Ka Mandir intricately carved Hindu temple.",
+		description:"Gwalior is a city in the central Indian state of Madhya Pradesh. It's known for its palaces and temples, including the Sas Bahu Ka Mandir intricately carved Hindu temple. ",
 		landmarks :[{
 			name : "Ajaypur",
 			description:"Little less known city Ajaypur.",
@@ -48,7 +48,7 @@ const states = [{
 		}]
 	},{
 		name : "Wasseypur",
-		description:"Wasseypur is a neighbourhood in the city of Dhanbad in Dhanbad Sadar subdivision of Dhanbad district in the state of Jharkhand in India.",
+		description:"Wasseypur is a neighbourhood in the city of Dhanbad in Dhanbad Sadar subdivision of Dhanbad district in the state of Jharkhand in India. ",
 		landmarks :[{
 			name : "Pandey muhalla",
 			description:"Located behind the dhanbad junction is must visit place.",
@@ -69,7 +69,7 @@ const states = [{
 	}]
 },{
 	name : "Assam",
-	description:"Assam is a state in northeastern India known for its wildlife, archeological sites and tea plantations.",
+	description:"Assam is a state in northeastern India known for its wildlife, archeological sites and tea plantations. ",
 	city :[{
 		name : "Guwhati",
 		description:"Guwahati is a sprawling city beside the Brahmaputra River in the northeast Indian state of Assam. It’s known for holy sites like the hilltop Kamakhya Temple,",
@@ -116,7 +116,7 @@ const states = [{
 		}]
 	},{
 		name : "Gaya",
-		description:"Gaya is a holy city beside the Falgu River, in the northeast Indian state of Bihar. It’s known for 18th-century Vishnupad Mandir, a riverside temple with an octagonal shrine. Close by, ancient Mangla Gauri Temple is set on a hilltop.",
+		description:"Gaya is a holy city beside the Falgu River, in the northeast Indian state of Bihar. It’s known for 18th-century Vishnupad Mandir, a riverside temple with an octagonal shrine. Close by, ancient Mangla Gauri Temple is set on a hilltop. ",
 		landmarks :[{
 			name : "Bakraur",
 			description:"Bakraur, sometimes called Bakrour, is a village located slightly east of Bodh Gaya in the state of Bihar, India. It lies directly across the Phalgu River from the landmark of Bodh Gaya, where Gautama Buddha is said to have attained enlightenment.",
@@ -136,6 +136,8 @@ const states = [{
 		}]
 	}]
 }];
+
+
 
 
 
@@ -272,6 +274,7 @@ function App() {
 
 
   export default App;
+
 
 
 
