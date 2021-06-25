@@ -138,70 +138,212 @@ const states = [{
 }];
 
 
-function App() 
-{
-	const [stateVal, setStateVal] = useState(0);
-	const [cityVal, setCityVal] = useState(0);
-	const [landVal, setLandVal] = useState(0);
 
-	const handleState = (e)=>{
-		setStateVal(e.target.value);
-		setCityVal(0);
-	} 
 
-	const handleLandVal =(e)=>{
-		setLandVal(e.target.value);
+
+
+
+function App() {
+
+	const [getState, setState] = useState("");
+	const [getCity, setCity] = useState("");
+	const [getLandmark, setLandmark] = useState("");
+  
+  
+	const [getStateIndex, setStateIndex] = useState(0);
+	const [getCityIndex, setCityIndex] = useState(0);
+	const [getLandmarkIndex, setLandmarkIndex] = useState(0);
+  
+	const [state_title, set_state_title] = useState("");
+	const [city_title, set_city_title] = useState("");
+	const [landmark_title, set_landmark_title] = useState("");
+  
+	const [state_des, set_state_des] = useState("");
+	const [city_des, set_city_des] = useState("");
+	const [landmark_des, set_landmark_des] = useState("");
+  
+	useEffect(() => {
+	  popStates();
+	  popCity(getStateIndex);
+	  popLandmark(getCityIndex, getStateIndex);
+	  chaneTitle();
+	  chaneDescription();
+  
+	}, [getStateIndex, getCityIndex,getLandmarkIndex]);
+  
+	function popStates(e) {
+	  const stateList = states.map((item, index) => {
+		return (
+		  <option value={index}>{item.name}</option>
+		)
+	  });
+	  setState(stateList);
+	 
 	}
-
-	const handleCity=(e)=>{
-		setCityVal(e.target.value);
-		setLandVal(0);
+	
+	
+	function chaneTitle(){
+		const stateTitle = states[getStateIndex].name;
+		const cityTitle =  states[getStateIndex].city[getCityIndex].name;
+		const landmarkTitle = states[getStateIndex].city[getCityIndex].landmarks[getLandmarkIndex].name;
+		set_state_title(stateTitle);
+		set_city_title(cityTitle);
+		set_landmark_title(landmarkTitle);
 	}
-
-
-	// Do not alter/remove main div
+  
+	function chaneDescription(){
+	  const stateDes = states[getStateIndex].description;
+	  const cityDes =  states[getStateIndex].city[getCityIndex].description;
+	  const landmarkDes = states[getStateIndex].city[getCityIndex].landmarks[getLandmarkIndex].description;
+	  set_state_des(stateDes);
+	  set_city_des(cityDes);
+	  set_landmark_des(landmarkDes);
+  }
+  
+	const stateChanged = (e) => {
+	  const id = e.target.value;
+	  setStateIndex(id);
+	  setCityIndex(0);
+	  popCity(getStateIndex);
+	}
+  
+	const cityChanged = (e) => {
+	  const id = e.target.value;
+	  setCityIndex(id);
+	  setLandmarkIndex(0);
+	  popLandmark(getCityIndex, getStateIndex);
+	}
+	const landmarkChanged = (e) => {
+	  const id = e.target.value;
+	  setLandmarkIndex(id);
+	  chaneTitle();
+	  chaneDescription();
+	}
+	// console.log(getStateIndex);
+  
+	function popCity(StateIndex) {
+	  const cityList = states[StateIndex].city.map((item, index) => {
+		return (
+		  <option value={index}>{item.name}</option>
+		)
+	  });
+	  setCity(cityList);
+	}
+  
+	function popLandmark(CityIndex, StateIndex) {
+	  const landmarkList = states[StateIndex].city[CityIndex].landmarks.map((item, index) => {
+		return (
+		  <option value={index}>{item.name}</option>
+		)
+	  });
+	  setLandmark(landmarkList);
+	}
+  
+  
 	return (
-	<div id="main">
-		States: <select id="state" value={stateVal} onChange={handleState}>
-			{states.map((item,index)=>{
-				return<option key={index} value={index}>{item.name}</option>;
-			})}
+	  <div id="main">
+	   States: <select id="state" onChange={stateChanged}>
+		  {getState}
 		</select>
-		Cities: <select id="city" value={cityVal} onChange={handleCity}>
-			{states[stateVal].city.map((item,index)=>{
-				return<option key={index} value={index}>{item.name}</option>;
-			})}
+  
+	   Cities: <select id="city" onChange={cityChanged} >
+		  {getCity}
 		</select>
-		Towns: <select id="landmark" value={landVal} onChange={handleLandVal}>
-			{states[stateVal].city[cityVal].landmarks.map((item,index)=>{
-				return<option key={index} value={index}>{item.name}</option>;
-			})}
+	   Towns: <select id="landmark" onChange={landmarkChanged}>
+		  {getLandmark}
 		</select>
-		
+  
 		<div id="state-name">
-		<div id="state-title">{states[stateVal].name}</div>
-		<div id="state-description" >{states[stateVal].description} </div>
+		  <div id="state-title">{state_title}</div>
+		  <div id="state-description">{state_des}</div>
 		</div>
-
 		<div id="city-name">
-		<div id="city-title" >{states[stateVal].city[cityVal].name}</div>
-		<div id="city-description" >
-			{states[stateVal].city[cityVal].description}
+		  <div id="city-title">{city_title}</div>
+		  <div id="city-description">{city_des}</div>
 		</div>
-		</div>
-
 		<div id="landmark-name">
-		<div id="landmark-title">
-			{states[stateVal].city[cityVal].landmarks[landVal].name}
-		</div>	
-		<div id="landmark-description">
-		{states[stateVal].city[cityVal].landmarks[landVal].description}
+		  <div id="landmark-title">{landmark_title}</div>
+		  <div id="landmark-description">{landmark_des}</div>
 		</div>
-		</div>
+  
+	  </div>
+	)
+  }
 
-	</div>
-	);
-}
+
+  export default App;
 
 
-export default App;
+
+
+
+
+
+// function App() 
+// {
+// 	const [stateVal, setStateVal] = useState(0);
+// 	const [cityVal, setCityVal] = useState(0);
+// 	const [landVal, setLandVal] = useState(0);
+
+// 	const handleState = (e)=>{
+// 		setStateVal(e.target.value);
+// 		setCityVal(0);
+// 	} 
+
+// 	const handleLandVal =(e)=>{
+// 		setLandVal(e.target.value);
+// 	}
+
+// 	const handleCity=(e)=>{
+// 		setCityVal(e.target.value);
+// 		setLandVal(0);
+// 	}
+
+
+// 	// Do not alter/remove main div
+// 	return (
+// 	<div id="main">
+// 		States: <select id="state" value={stateVal} onChange={handleState}>
+// 			{states.map((item,index)=>{
+// 				return<option key={index} value={index}>{item.name}</option>;
+// 			})}
+// 		</select>
+// 		Cities: <select id="city" value={cityVal} onChange={handleCity}>
+// 			{states[stateVal].city.map((item,index)=>{
+// 				return<option key={index} value={index}>{item.name}</option>;
+// 			})}
+// 		</select>
+// 		Towns: <select id="landmark" value={landVal} onChange={handleLandVal}>
+// 			{states[stateVal].city[cityVal].landmarks.map((item,index)=>{
+// 				return<option key={index} value={index}>{item.name}</option>;
+// 			})}
+// 		</select>
+		
+// 		<div id="state-name">
+// 		<div id="state-title">{states[stateVal].name}</div>
+// 		<div id="state-description" >{states[stateVal].description} </div>
+// 		</div>
+
+// 		<div id="city-name">
+// 		<div id="city-title" >{states[stateVal].city[cityVal].name}</div>
+// 		<div id="city-description" >
+// 			{states[stateVal].city[cityVal].description}
+// 		</div>
+// 		</div>
+
+// 		<div id="landmark-name">
+// 		<div id="landmark-title">
+// 			{states[stateVal].city[cityVal].landmarks[landVal].name}
+// 		</div>	
+// 		<div id="landmark-description">
+// 		{states[stateVal].city[cityVal].landmarks[landVal].description}
+// 		</div>
+// 		</div>
+
+// 	</div>
+// 	);
+// }
+
+
+// export default App;
+
