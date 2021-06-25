@@ -146,6 +146,7 @@ function App()
 
 	const handleState = (e)=>{
 		setStateVal(e.target.value);
+		setCityVal(0);
 	} 
 
 	const handleLandVal =(e)=>{
@@ -154,6 +155,7 @@ function App()
 
 	const handleCity=(e)=>{
 		setCityVal(e.target.value);
+		setLandVal(0);
 	}
 
 
